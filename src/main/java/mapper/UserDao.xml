@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.UserDao">
+    <!--查询所有用户-->
+    <select id="findAllUsers" resultType="User">
+        select * from easybuy_user
+    </select>
+    <!--修改用户-->
+    <update id="updateUser">
+        update easybuy_user set loginName = #{loginName} where id = #{id}
+    </update>
+    <!--多条件查询:condition-->
+    <select id="selectByCondition" resultType="User">
+        select * from easybuy_user where loginName like '%' #{loginName} '%' and type = #{type}
+    </select>
+    <!--多条件查询:map-->
+    <select id="selectByMap" resultType="User">
+        select * from easybuy_user where loginName like '%' #{loginName} '%' and type = #{type}
+    </select>
+    <!--用户名字模糊查询、用户地址-->
+    <select id="likeSelectAndAddress" resultMap="userList">
+        select u.*,a.address from easybuy_user u,easybuy_user_address a
+        where loginName like concat('%',#{loginName},'%') and type = #{type} and u.id = a.userId
+    </select>
+    <resultMap id="userList" type="User">
+        <!--<result property="id" column="id"/>
+        <result property="loginName" column="loginName"/>
+        <result property="userName" column="userName"/>
+        <result property="password" column="password"/>
+        <result property="sex" column="sex"/>
+        <result property="identityCode" column="identityCode"/>
+        <result property="email" column="email"/>
+        <result property="mobile" column="mobile"/>
+        <result property="type" column="type"/>-->
+        <result property="uAddress" column="address"/>
+    </resultMap>
+    <!--智能标签if-->
+    <select id="ifTag" resultType="User">
+        select * from easybuy_user
+        <where>
+            <if test="loginName != null">
+                and loginName like '%' #{loginName} '%'
+            </if>
+            <if test="type != null">
+                and type = #{type}
+            </if>
+        </where>
+    </select>
+    <!--智能标签choose-->
+    <select id="chooseTag" resultType="User">
+        select * from easybuy_user
+        <where>
+            <choose>
+                <when test="loginName != null">
+                    and loginName like  '%' #{loginName} '%'
+                </when>
+                <otherwise>
+                    and type = 1
+                </otherwise>
+            </choose>
+        </where>
+    </select>
+    <!---智能标签foreach:数组-->
+    <select id="foreachTag" resultType="User">
+        select * from easybuy_user
+        <if test="array.length > 0">
+            where id in
+            <foreach collection="array" open="(" close=")" separator="," item="id">
+                #{id}
+            </foreach>
+        </if>
+    </select>
+    <!---智能标签foreach：集合-->
+    <select id="foreachListTag" resultType="User">
+        select * from easybuy_user
+        <if test="list.size > 0">
+            where id in
+            <foreach collection="list" open="(" close=")" separator="," item="user">
+                #{user.id}
+            </foreach>
+        </if>
+    </select>
+</mapper>

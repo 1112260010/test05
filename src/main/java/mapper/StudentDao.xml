@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.StudentDao">
+    <sql id="include">sname,sage</sql>
+    <!--查询所有学生-->
+    <select id="findAll" resultType="Student">
+        select <include refid="include"></include> from student
+    </select>
+    <!--根据主键查询学生-->
+    <select id="findById" resultType="Student">
+        select <include refid="include"></include> from student where sid=#{sid}
+    </select>
+    <!--添加学生-->
+    <insert id="AddStudent">
+        insert into student (sname,sage) values (#{sname},#{sage})
+    </insert>
+    <!--添加学生并返回最大id-->
+    <insert id="AddStudentReturnMaxId">
+        insert into student (sname,sage) values (#{sname},#{sage})
+        <selectKey keyProperty="sid" resultType="int">
+            select @@IDENTITY
+        </selectKey>
+    </insert>
+    <!--模糊查询-->
+    <!--WHERE sname like '%' #{sname} '%'-->
+    <!--where sname like concat('%',#{sname},'%')-->
+    <select id="likeSelect" resultType="Student">
+        select * from student
+        where sname like '%${value}%'
+    </select>
+</mapper>
