@@ -196,7 +196,7 @@ public class Test02 {
         UserDao userDao = sqlSession.getMapper(UserDao.class);
         List<User> userList = new ArrayList<>();
         User u1 = new User();
-        u1.setId(1);
+        u1.setId(2);
         User u2 = new User();
         u2.setId(10);
         User u3 = new User();
