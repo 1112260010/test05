@@ -7,6 +7,10 @@
     <select id="findAllUsers" resultType="User">
         select * from easybuy_user
     </select>
+    <!--删除用户-->
+    <delete id="deleteUser">
+        delete from easybuy_user where id = #{id}
+    </delete>
     <!--修改用户-->
     <update id="updateUser">
         update easybuy_user set loginName = #{loginName} where id = #{id}
