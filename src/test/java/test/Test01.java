@@ -38,6 +38,7 @@ public class Test01 {
         List<Student> list = studentDao.likeSelect("三");
         for(Student stu:list){
             System.out.println(stu.getSname()+"----"+stu.getSage());
+            System.out.println("....");
         }
     }
 }
