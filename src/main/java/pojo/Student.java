@@ -14,7 +14,16 @@ public class Student{
 	 /****/
 	private Integer sage;
 
-	public void setSid(Integer sid){
+	   @Override
+	   public String toString() {
+		   return "Student{" +
+				   "sid=" + sid +
+				   ", sname='" + sname + '\'' +
+				   ", sage=" + sage +
+				   '}';
+	   }
+
+	   public void setSid(Integer sid){
 		this.sid=sid;
 	}
 

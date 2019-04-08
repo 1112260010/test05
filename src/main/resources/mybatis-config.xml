@@ -26,7 +26,11 @@
         </environment>
     </environments>
     <mappers>
+        <!--<package name="mapper"></package>-->
         <mapper resource="mapper/StudentDao.xml"/>
         <mapper resource="mapper/UserDao.xml"/>
+        <mapper resource="mapper/UserAddressDao.xml"/>
+        <mapper resource="mapper/CategoryDao.xml"/>
+        <mapper resource="mapper/TeacherDao.xml"/>
     </mappers>
 </configuration>

@@ -21,7 +21,17 @@ public class UserAddress {
 	 /**备注**/
 	private String remark;
 
-	public void setId(Integer id){
+	private User user;
+
+	   public User getUser() {
+		   return user;
+	   }
+
+	   public void setUser(User user) {
+		   this.user = user;
+	   }
+
+	   public void setId(Integer id){
 		this.id=id;
 	}
 

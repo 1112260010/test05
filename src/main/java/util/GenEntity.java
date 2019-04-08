@@ -19,7 +19,7 @@ public class GenEntity {
     //类输出路径
     private String outputPath ="E:\\ziliao\\IntelliJ IDEA 2017.2.7\\test\\test05\\src\\main\\java\\pojo" ;
 
-    private String tablename = "easybuy_user_address";//表名
+    private String tablename = "teacher_student";//表名
     private String[] colnames; // 列名数组
     private String[] colTypes; //列名类型数组
     private String[] colDescs; //列名描述数组
@@ -28,7 +28,7 @@ public class GenEntity {
     private boolean f_sql = false; // 是否需要导入包java.sql.*
 
     //数据库连接
-    private static final String URL ="jdbc:mysql://localhost:3306/easybuy?useUnicode=true&characterEncoding=utf-8";
+    private static final String URL ="jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=utf-8";
     private static final String NAME = "root";
     private static final String PASS = "1234";
     private static final String DRIVER ="com.mysql.jdbc.Driver";

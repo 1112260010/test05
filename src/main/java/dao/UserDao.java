@@ -32,4 +32,10 @@ public interface UserDao {
 
     //修改用户
     public int updateUser(User user);
+
+    //一对多   单条sql
+    public User testOneToMany(Integer id);
+
+    //一对多 多条sql
+    public User testOneToManyMultiSql(Integer id);
 }

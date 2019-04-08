@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.CategoryDao">
+    <!--自关联 1：N-->
+    <select id="selectCategoryByParentId" resultMap="categoryMapper1">
+        select * from easybuy_product_category
+        where parentId = #{parentId}
+    </select>
+    <resultMap id="categoryMapper1" type="Category">
+        <id column="id" property="id"></id>
+        <result column="name" property="name"></result>
+        <collection property="list" ofType="Category" select="selectCategoryByParentId" column="id"></collection>
+    </resultMap>
+
+    <!--自关联 N：1-->
+    <select id="selectCategoryById" resultMap="categoryMapper2">
+        select id,name,parentId,type from easybuy_product_category
+        where id = #{id}
+    </select>
+    <resultMap id="categoryMapper2" type="Category">
+        <id column="id" property="id"></id>
+        <result column="name" property="name"></result>
+        <association property="category" javaType="Category" column="parentId" select="selectCategoryById"></association>
+    </resultMap>
+</mapper>

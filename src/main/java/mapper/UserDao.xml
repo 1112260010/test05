@@ -86,4 +86,30 @@
             </foreach>
         </if>
     </select>
+    <!--关联查询一对多 单条sql-->
+    <select id="testOneToMany" resultMap="userMapper">
+        select eu.id uid,eu.userName,eua.id aid,eua.address from easybuy_user eu,easybuy_user_address eua
+        where eu.id = eua.userId and eu.id = #{id}
+    </select>
+    <resultMap id="userMapper" type="User">
+        <id column="uid" property="id"></id>
+        <result column="userName" property="userName"></result>
+        <collection property="list" ofType="UserAddress">
+            <id column="aid" property="id"></id>
+            <result column="address" property="address"></result>
+        </collection>
+    </resultMap>
+    <!--关联查询一对多 多条sql-->
+    <select id="testOneToManyMultiSql" resultMap="userMultiMapper">
+        select id,userName from easybuy_user where id = #{id}
+    </select>
+    <resultMap id="userMultiMapper" type="User">
+        <id column="id" property="id"></id>
+        <result column="userName" property="userName"></result>
+        <!--column的字段是一的一方的字段-->
+        <collection property="list" ofType="UserAddress" select="selectAddressByUserId" column="id"></collection>
+    </resultMap>
+    <select id="selectAddressByUserId" resultType="UserAddress">
+        select id,address from easybuy_user_address where userId = #{id}
+    </select>
 </mapper>

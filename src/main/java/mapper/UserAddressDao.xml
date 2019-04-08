@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.UserAddressDao">
+    <!--多对一    单条sql-->
+    <select id="selectManyToOnesingleSql" resultMap="userAddressMapper">
+        select eua.id aid,eua.address,eu.userName from easybuy_user eu,easybuy_user_address eua
+        where eu.id = eua.userId and eua.id = #{id}
+    </select>
+    <resultMap id="userAddressMapper" type="UserAddress">
+        <id column="aid" property="id"></id>
+        <result column="address" property="address"></result>
+        <association property="user" javaType="User">
+            <id column="uid" property="id"></id>
+            <result column="userName" property="userName"></result>
+        </association>
+    </resultMap>
+
+    <!--多对一   多条sql-->
+    <select id="selectManyToOneMultiSql" resultMap="userAddressMultiMapper">
+        select * from easybuy_user_address where id = #{id}
+    </select>
+    <resultMap id="userAddressMultiMapper" type="UserAddress">
+        <id column="id" property="id"></id>
+        <result column="address" property="address"></result>
+        <association property="user" javaType="User" select="selectUserByUserId" column="userId">
+        </association>
+    </resultMap>
+    <select id="selectUserByUserId" resultType="User">
+        select * from easybuy_user where id = #{id}
+    </select>
+</mapper>

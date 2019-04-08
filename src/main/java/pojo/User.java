@@ -1,6 +1,8 @@
 package pojo;
 
-   /**
+import java.util.List;
+
+/**
     * easybuy_user 实体类
     * @author liangzz
     * @date2019-04-03 11:15 
@@ -25,6 +27,16 @@ public class User {
 	private String mobile;
 	 /**类型（1：后台 0:前台）**/
 	private Integer type;
+
+	private List<UserAddress> list;
+
+	public List<UserAddress> getList() {
+		return list;
+	}
+
+	public void setList(List<UserAddress> list) {
+		this.list = list;
+	}
 
 	private String uAddress;
 
