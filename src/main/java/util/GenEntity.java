@@ -31,7 +31,7 @@ public class GenEntity {
     private static final String URL ="jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=utf-8";
     private static final String NAME = "root";
     private static final String PASS = "1234";
-    private static final String DRIVER ="com.mysql.jdbc.Driver";
+    private static final String DRIVER ="Spring.mysql.jdbc.Driver";
 
     /*
      * 构造函数

@@ -1,12 +1,14 @@
 package pojo;
 
-   /**
+import java.io.Serializable;
+
+/**
     * student 实体类
     * @author liangzz
     * @date2019-04-02 01:45 
     */ 
 
-public class Student{
+public class Student implements Serializable{
 	 /****/
 	private Integer sid;
 	 /****/

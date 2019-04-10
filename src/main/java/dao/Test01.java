@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class Test01 {
     public static void main(String[] args) throws ClassNotFoundException, SQLException {
-        String driver = "com.mysql.jdbc.Driver";
+        String driver = "Spring.mysql.jdbc.Driver";
         String url = "jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=utf-8&useSSL=false";
         String userName = "root";
         String pwd = "1234";

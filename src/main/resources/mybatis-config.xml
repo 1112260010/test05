@@ -9,6 +9,11 @@
         <setting name="logImpl" value="LOG4J"/>
         &lt;!&ndash;<setting name="autoMappingBehavior" value="NONE"/>&ndash;&gt;
     </settings>-->
+    <settings>
+        <setting name="lazyLoadingEnabled" value="true"/>
+        <setting name="aggressiveLazyLoading" value="false"/>
+        <setting name="cacheEnabled" value="true"/>
+    </settings>
     <!--别名-->
     <typeAliases>
         <!--<typeAlias type="pojo.Student" alias="stu"></typeAlias>-->
